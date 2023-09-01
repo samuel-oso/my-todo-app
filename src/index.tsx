@@ -4,10 +4,10 @@ import { MantineProvider, MantineThemeOverride } from "@mantine/core";
 import "./index.css";
 import App from "./App";
 
-export const myTheme: MantineThemeOverride = {
+const myTheme: MantineThemeOverride = {
   colors: {
     azure: [
-      "#A0B3FD",
+      "#000000",
       "#7E96FC",
       "#5D7AFB",
       "#2B3EA9",
@@ -21,6 +21,18 @@ export const myTheme: MantineThemeOverride = {
   },
   primaryColor: "azure",
   fontFamily: "Work Sans, sans-serif",
+  // components: {
+  //   Button: {
+  //     defaultProps: {
+  //       color: "red",
+  //       variant: "light",
+  //       style: { transition: "background-color 0.3s" },
+  //     },
+  //     "&:hover": {
+  //       backgroundColor: "#0E31F2",
+  //     },
+  //   },
+  // },
 };
 
 ReactDOM.render(

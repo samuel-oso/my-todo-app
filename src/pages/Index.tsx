@@ -1,11 +1,16 @@
-import { Button } from "@mantine/core";
+import Header from "../components/Header";
+import Navbar from "../components/Navbar";
+import TasksDetails from "../components/TasksDetails";
 
 const Index = () => {
   return (
-    <div>
-      <h1>Good morning!</h1>
-      <Button>Testing</Button>
-    </div>
+    <main>
+      <Navbar />
+      <div className="max-w-[1340px] m-auto">
+        <Header />
+        <TasksDetails />
+      </div>
+    </main>
   );
 };
 
