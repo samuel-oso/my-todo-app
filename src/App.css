@@ -102,3 +102,81 @@ video {
   font-size: 16px !important;
   color: #344054;
 }
+
+.mantine-hqx0d1 {
+  align-items: center;
+}
+
+.mantine-kfwbxd {
+  border-radius: 6px;
+  border: 1px solid #ced4da;
+  cursor: pointer;
+}
+
+.mantine-kfwbxd:checked {
+  border: 1px solid #3f5bf6;
+  background-color: #f9f5ff;
+}
+
+.mantine-kfwbxd:checked + .___ref-icon {
+  color: #3f5bf6;
+}
+
+.mantine-1eopv3 {
+  border: none;
+}
+
+.mantine-1eopv3:first-child {
+  position: absolute;
+  left: 0;
+}
+
+.mantine-1eopv3:last-child {
+  position: absolute;
+  right: 0;
+}
+
+.mantine-UnstyledButton-root .mantine-2jxpqh {
+  display: none;
+}
+
+.mantine-Group-root .mantine-UnstyledButton-root:first-child::after,
+.mantine-Group-root .mantine-UnstyledButton-root:last-child::before {
+  content: "Previous";
+  color: #475467;
+  font-weight: 600;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 8px;
+  font-size: 14px;
+}
+
+.mantine-Group-root .mantine-UnstyledButton-root:first-child::before,
+.mantine-Group-root .mantine-UnstyledButton-root:last-child::after {
+  content: "";
+  display: inline-block;
+  vertical-align: middle;
+  background-image: url("../src/assets/previousIcon.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 20px;
+  height: 20px;
+}
+
+.mantine-Group-root .mantine-UnstyledButton-root:last-child::before {
+  content: "Next";
+  margin-left: 0;
+  margin-right: 8px;
+}
+
+.mantine-Group-root .mantine-UnstyledButton-root:last-child::after {
+  background-image: url("../src/assets/nextIcon.svg");
+}
+
+.mantine-q49omc {
+  padding: 12px;
+  width: 40px;
+  height: 40px;
+  color: #1d2939;
+  border: none;
+}

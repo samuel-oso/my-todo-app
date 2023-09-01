@@ -1,4 +1,6 @@
 import React, { useEffect, useRef } from "react";
+import MyTasks from "../../actions/MyTasks";
+import CustomPagination from "../../actions/CustomPagination";
 
 interface TasksCardProps {
   selectedDate: Date | null;
@@ -84,6 +86,9 @@ const TasksCard: React.FC<TasksCardProps> = ({
       <div className="flex items-center gap-16 mt-16 overflow-auto scrollbar-hide">
         {dayCards}
       </div>
+
+      <MyTasks />
+      <CustomPagination />
     </div>
   );
 };
