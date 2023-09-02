@@ -32,7 +32,7 @@ const DummyData: React.FC<DummyDataProps> = ({ onDataFetched }) => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  });
 
   return null;
 };
