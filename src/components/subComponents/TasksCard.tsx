@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from "react";
 import MyTasks from "../../actions/MyTasks";
-import CustomPagination from "../../actions/CustomPagination";
 
 interface TasksCardProps {
   selectedDate: Date | null;
@@ -41,9 +40,8 @@ const TasksCard: React.FC<TasksCardProps> = ({
     const isActive = currentDate.getDate() === day;
 
     const cardStyle = {
-      // backgroundColor: isActive ? "#3f5bf6" : "white",
       border: isActive ? "none" : "1px solid #D0D5DD",
-      cursor: "pointer", // Add cursor pointer for interactive feel
+      cursor: "pointer",
     };
 
     const textStyle = {
@@ -66,7 +64,7 @@ const TasksCard: React.FC<TasksCardProps> = ({
             : "hover:bg-[#67698c1a] bg-white"
         }`}
         style={cardStyle}
-        onClick={handleDateClick} // Add onClick event handler
+        onClick={handleDateClick}
       >
         <p style={textStyle}>{dayOfWeek}</p>
         <p style={textStyle}>{day}</p>
@@ -76,19 +74,20 @@ const TasksCard: React.FC<TasksCardProps> = ({
 
   return (
     <div
-      className="max-w-[842px] pl-32 pr-24"
+      className="max-w-[842px] pl-32 pr-24 flex flex-col gap-32"
       style={{ borderRight: "1px solid #eaecf0" }}
     >
-      <p className="text-gray-900 font-semibold">
-        {currentDate.toLocaleString("default", { month: "long" })} {year}
-      </p>
+      <div>
+        <p className="text-gray-900 font-semibold">
+          {currentDate.toLocaleString("default", { month: "long" })} {year}
+        </p>
 
-      <div className="flex items-center gap-16 mt-16 overflow-auto scrollbar-hide">
-        {dayCards}
+        <div className="flex items-center gap-16 mt-16 overflow-auto scrollbar-hide">
+          {dayCards}
+        </div>
       </div>
 
       <MyTasks />
-      <CustomPagination />
     </div>
   );
 };

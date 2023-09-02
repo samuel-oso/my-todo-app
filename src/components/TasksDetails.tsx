@@ -10,7 +10,7 @@ const TasksDetails: React.FC = () => {
   };
 
   return (
-    <section className="px-32 mt-32 flex justify-between">
+    <section className="px-32 mt-32 flex justify-between pb-96">
       <TasksCard selectedDate={selectedDate} onDateSelect={handleDateSelect} />{" "}
       <TimingCard onCalendarDateChange={handleDateSelect} />
     </section>

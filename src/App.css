@@ -110,7 +110,6 @@ video {
 .mantine-kfwbxd {
   border-radius: 6px;
   border: 1px solid #ced4da;
-  cursor: pointer;
 }
 
 .mantine-kfwbxd:checked {
@@ -177,6 +176,18 @@ video {
   padding: 12px;
   width: 40px;
   height: 40px;
-  color: #1d2939;
+  color: #475467;
+  font-weight: 500;
   border: none;
+  border-radius: 50%;
+}
+
+.mantine-q49omc[data-active] {
+  border-radius: 50%;
+  background-color: #f9fafb;
+  color: #1d2939;
+}
+
+.mantine-q49omc[data-active]:hover {
+  background-color: #f9fafb !important;
 }
