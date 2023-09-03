@@ -6,13 +6,17 @@ import { ReactComponent as Bell } from "../assets/notifyIcon.svg";
 
 import { TimeInput } from "@mantine/dates";
 
-const EditAndDeleteTask = () => {
+interface EditAddTaskProps {
+  onClose: () => void;
+}
+
+const EditAddTask: React.FC<EditAddTaskProps> = ({ onClose }) => {
   return (
     <div className="p-24 shadow-xl flex flex-col gap-16">
       <div className="flex items-center justify-between">
         <h4 className="text-gray-900 text-lg font-semibold">Add Task</h4>
 
-        <UnstyledButton>
+        <UnstyledButton onClick={onClose}>
           <CloseIcon />
         </UnstyledButton>
       </div>
@@ -22,7 +26,7 @@ const EditAndDeleteTask = () => {
       <div className="flex items-center justify-between timeCard">
         <Input icon={<CalendarB />} defaultValue="12/03/1200" />
 
-        <div className="flex  gap-16">
+        <div className="flex gap-16">
           <TimeInput icon={<TimeB />} defaultValue="00:00" />
           <TimeInput icon={<TimeB />} defaultValue="00:00" />
         </div>
@@ -34,7 +38,7 @@ const EditAndDeleteTask = () => {
           <p className="font-medium text-[#667085]">10 Minutes before</p>
         </div>
         <UnstyledButton>
-          <CloseIcon className="w-16 h-16" />
+          <CloseIcon className="w-16 h-16" onClick={onClose} />
         </UnstyledButton>
       </div>
 
@@ -55,4 +59,4 @@ const EditAndDeleteTask = () => {
   );
 };
 
-export default EditAndDeleteTask;
+export default EditAddTask;

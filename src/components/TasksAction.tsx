@@ -1,20 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import Calendar from "../inputs/Calendar";
+import EditAddTask from "../actions/EditAddTask";
 
 interface TasksActionProps {
   onCalendarDateChange: (date: Date) => void;
+  isEditAddTaskOpen: boolean;
+  onCloseEditAddTask: () => void;
 }
 
-const TasksAction: React.FC<TasksActionProps> = ({ onCalendarDateChange }) => {
+const TasksAction: React.FC<TasksActionProps> = ({
+  onCalendarDateChange,
+  isEditAddTaskOpen,
+  onCloseEditAddTask,
+}) => {
   return (
     <div className="w-394">
-      <div className="px-24 py-20 h-390 shadow-xl">
+      {isEditAddTaskOpen ? (
+        <EditAddTask onClose={onCloseEditAddTask} />
+      ) : (
         <Calendar onCalendarDateSelect={onCalendarDateChange} />
-      </div>
-
-      {/* <AboutTask /> */}
-
-      {/* <EditAndDeleteTask /> */}
+      )}
     </div>
   );
 };

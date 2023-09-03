@@ -32,28 +32,30 @@ const Calendar: React.FC<CalendarProps> = ({ onCalendarDateSelect }) => {
     }) || "";
 
   return (
-    <div className="relative">
-      <div className="flex gap-12 mt-4 items-center absolute top-45 pb-12">
-        <TextInput
-          className="text-gray-700 rounded-lg shadow-sm calendarInput w-262"
-          value={formattedDate}
-          readOnly
-        />
+    <div className="px-24 py-20 h-390 shadow-xl">
+      <div className="relative">
+        <div className="flex gap-12 mt-4 items-center absolute top-45 pb-12">
+          <TextInput
+            className="text-gray-700 rounded-lg shadow-sm calendarInput w-262"
+            value={formattedDate}
+            readOnly
+          />
 
-        <div
-          className="cursor-pointer px-16 py-10 h-40 text-sm font-semibold text-gray700 rounded-lg shadow-sm bg-[#fff]"
-          style={{ border: "1px solid #D0D5DD" }}
-          onClick={handleTodayClick}
-        >
-          Today
+          <div
+            className="cursor-pointer px-16 py-10 h-40 text-sm font-semibold text-gray700 rounded-lg shadow-sm bg-[#fff]"
+            style={{ border: "1px solid #D0D5DD" }}
+            onClick={handleTodayClick}
+          >
+            Today
+          </div>
         </div>
-      </div>
 
-      <DatePicker
-        value={value}
-        onChange={handleDateSelect}
-        renderDay={renderDay}
-      />
+        <DatePicker
+          value={value}
+          onChange={handleDateSelect}
+          renderDay={renderDay}
+        />
+      </div>
     </div>
   );
 };

@@ -6,24 +6,35 @@ import TasksAction from "../components/TasksAction";
 
 const Index = () => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [isEditAddTaskOpen, setIsEditAddTaskOpen] = useState(false);
 
   const handleDateSelect = (date: Date) => {
     setSelectedDate(date);
+  };
+
+  const handleCreateTaskClick = () => {
+    setIsEditAddTaskOpen(true);
+  };
+
+  const handleCloseEditAddTask = () => {
+    setIsEditAddTaskOpen(false);
   };
 
   return (
     <main>
       <Navbar />
       <div className="max-w-[1340px] m-auto">
-        <Header />
-
+        <Header onCreateTaskClick={handleCreateTaskClick} />
         <main className="px-32 mt-32 flex justify-between pb-96">
           <TasksCard
             selectedDate={selectedDate}
             onDateSelect={handleDateSelect}
           />
-
-          <TasksAction onCalendarDateChange={handleDateSelect} />
+          <TasksAction
+            onCalendarDateChange={handleDateSelect}
+            isEditAddTaskOpen={isEditAddTaskOpen}
+            onCloseEditAddTask={handleCloseEditAddTask} // Add this prop
+          />
         </main>
       </div>
     </main>
