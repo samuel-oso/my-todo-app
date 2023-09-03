@@ -3,10 +3,17 @@ import { ReactComponent as CloseIcon } from "../assets/closeIcon.svg";
 import { ReactComponent as CalendarIcon } from "../assets/calendarIcon.svg";
 import { ReactComponent as TimeIcon } from "../assets/timeIcon.svg";
 
-const AboutTask = () => {
+interface AboutTaskProps {
+  onClose: () => void;
+}
+
+const AboutTask: React.FC<AboutTaskProps> = ({ onClose }) => {
   return (
     <div className="px-24 py-20 shadow-xl flex flex-col gap-16">
-      <UnstyledButton className="w-full flex justify-end items-center">
+      <UnstyledButton
+        className="w-full flex justify-end items-center"
+        onClick={onClose}
+      >
         <CloseIcon />
       </UnstyledButton>
 
