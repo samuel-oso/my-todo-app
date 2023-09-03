@@ -22,10 +22,10 @@ const TasksAction: React.FC<TasksActionProps> = ({
 
   return (
     <div className="w-394">
-      {isEditAddTaskOpen ? (
-        <EditAddTask onClose={onCloseEditAddTask} />
-      ) : isAboutTaskOpen ? (
+      {isAboutTaskOpen ? (
         <AboutTask onClose={() => setIsAboutTaskOpen(false)} />
+      ) : isEditAddTaskOpen ? (
+        <EditAddTask onClose={onCloseEditAddTask} />
       ) : (
         <Calendar onCalendarDateSelect={onCalendarDateChange} />
       )}
