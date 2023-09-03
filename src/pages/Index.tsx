@@ -1,14 +1,30 @@
+import { useState } from "react";
 import Header from "../components/Header";
 import Navbar from "../components/Navbar";
-import TasksDetails from "../components/TasksDetails";
+import TasksCard from "../components/TasksCard";
+import TasksAction from "../components/TasksAction";
 
 const Index = () => {
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+
+  const handleDateSelect = (date: Date) => {
+    setSelectedDate(date);
+  };
+
   return (
     <main>
       <Navbar />
       <div className="max-w-[1340px] m-auto">
         <Header />
-        <TasksDetails />
+
+        <main className="px-32 mt-32 flex justify-between pb-96">
+          <TasksCard
+            selectedDate={selectedDate}
+            onDateSelect={handleDateSelect}
+          />
+
+          <TasksAction onCalendarDateChange={handleDateSelect} />
+        </main>
       </div>
     </main>
   );

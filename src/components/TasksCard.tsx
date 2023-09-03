@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import MyTasks from "../../actions/MyTasks";
+import MyTasks from "../actions/MyTasks";
 
 interface TasksCardProps {
   selectedDate: Date | null;
