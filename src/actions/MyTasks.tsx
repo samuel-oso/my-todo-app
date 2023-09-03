@@ -13,6 +13,7 @@ const MyTasks: React.FC = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const tasksPerPage = 7;
+  const [activeTaskId, setActiveTaskId] = useState<number | null>(null);
 
   const toggleTaskCompletion = (taskId: number) => {
     setTasks((prevTasks) =>
@@ -33,6 +34,10 @@ const MyTasks: React.FC = () => {
 
   const tasksToDisplay = tasks.slice(startIndex, endIndex);
 
+  const handleTaskClick = (taskId: number) => {
+    setActiveTaskId(taskId === activeTaskId ? null : taskId);
+  };
+
   return (
     <section>
       <p className="text-gray-900 font-semibold mb-16">My Tasks</p>
@@ -40,8 +45,11 @@ const MyTasks: React.FC = () => {
         {tasksToDisplay.map((task) => (
           <div
             key={task.id}
-            className="px-24 py-16 flex justify-between items-center h-72 bg-gray-50"
+            className={`px-24 py-16 flex justify-between items-center h-72 ${
+              task.id === activeTaskId ? "bg-[#EAEDFE]" : ""
+            }`}
             style={{ borderBottom: "1px solid #EAECF0" }}
+            onClick={() => handleTaskClick(task.id)}
           >
             <Checkbox
               label={
