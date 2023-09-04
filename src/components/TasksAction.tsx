@@ -19,7 +19,7 @@ const TasksAction: React.FC<TasksActionProps> = ({
 
   return (
     <div className="w-394">
-      {isAboutTaskOpen ? (
+      {isAboutTaskOpen && !isEditAddTaskOpen ? (
         <AboutTask onClose={closeAboutTask} />
       ) : isEditAddTaskOpen ? (
         <EditAddTask onClose={onCloseEditAddTask} />
