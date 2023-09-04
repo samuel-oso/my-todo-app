@@ -1,9 +1,12 @@
 import React, { createContext, useContext, useState, ReactNode } from "react";
+import { Task } from "../actions/MyTasks";
 
 interface AboutTaskContextProps {
   isAboutTaskOpen: boolean;
   openAboutTask: () => void;
   closeAboutTask: () => void;
+  selectedTask: Task | null;
+  setSelectedTask: (task: Task | null) => void;
 }
 
 const AboutTaskContext = createContext<AboutTaskContextProps | undefined>(
@@ -18,6 +21,7 @@ export const AboutTaskProvider: React.FC<AboutTaskProviderProps> = ({
   children,
 }) => {
   const [isAboutTaskOpen, setIsAboutTaskOpen] = useState(false);
+  const [selectedTask, setSelectedTask] = useState<Task | null>(null);
 
   const openAboutTask = () => {
     setIsAboutTaskOpen(true);
@@ -33,6 +37,8 @@ export const AboutTaskProvider: React.FC<AboutTaskProviderProps> = ({
         isAboutTaskOpen,
         openAboutTask,
         closeAboutTask,
+        selectedTask,
+        setSelectedTask,
       }}
     >
       {children}

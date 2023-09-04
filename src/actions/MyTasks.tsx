@@ -4,10 +4,11 @@ import DummyData from "../api/DummyData";
 import CustomPagination from "./CustomPagination";
 import { useAboutTask } from "../contexts/AboutTaskContext";
 
-interface Task {
+export interface Task {
   id: number;
   task: string;
   time: string;
+  date: string;
   completed: boolean;
 }
 
@@ -36,12 +37,18 @@ const MyTasks: React.FC = () => {
 
   const tasksToDisplay = tasks.slice(startIndex, endIndex);
 
-  const handleTaskClick = (taskId: number) => {
-    setActiveTaskId(taskId);
-    openAboutTask(); // Open the "About Task" panel when a task is clicked
-  };
+  const { setSelectedTask, openAboutTask } = useAboutTask();
 
-  const { openAboutTask } = useAboutTask();
+  const handleTaskClick = (taskId: number) => {
+    const selectedTask = tasks.find((task) => task.id === taskId);
+    setActiveTaskId(taskId);
+    openAboutTask();
+
+    if (selectedTask !== undefined) {
+      setSelectedTask(selectedTask);
+    } else {
+    }
+  };
 
   return (
     <section>
