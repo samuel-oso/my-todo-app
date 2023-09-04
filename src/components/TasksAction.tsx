@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import Calendar from "../inputs/Calendar";
 import EditAddTask from "../actions/EditAddTask";
 import AboutTask from "../actions/AboutTask";
+import { useAboutTask } from "../contexts/AboutTaskContext";
 
 interface TasksActionProps {
   onCalendarDateChange: (date: Date) => void;
@@ -14,24 +15,17 @@ const TasksAction: React.FC<TasksActionProps> = ({
   isEditAddTaskOpen,
   onCloseEditAddTask,
 }) => {
-  const [isAboutTaskOpen, setIsAboutTaskOpen] = useState(false);
-
-  const handleAboutTaskClick = () => {
-    setIsAboutTaskOpen(true);
-  };
+  const { isAboutTaskOpen, closeAboutTask } = useAboutTask();
 
   return (
     <div className="w-394">
       {isAboutTaskOpen ? (
-        <AboutTask onClose={() => setIsAboutTaskOpen(false)} />
+        <AboutTask onClose={closeAboutTask} />
       ) : isEditAddTaskOpen ? (
         <EditAddTask onClose={onCloseEditAddTask} />
       ) : (
         <Calendar onCalendarDateSelect={onCalendarDateChange} />
       )}
-
-      {/* Add a button to open AboutTask */}
-      <button onClick={handleAboutTaskClick}>Open About Task</button>
     </div>
   );
 };

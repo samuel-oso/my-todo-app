@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { MantineProvider, MantineThemeOverride } from "@mantine/core";
 import "./index.css";
 import App from "./App";
+import { AboutTaskProvider } from "./contexts/AboutTaskContext";
 
 const myTheme: MantineThemeOverride = {
   colors: {
@@ -38,7 +39,9 @@ const myTheme: MantineThemeOverride = {
 ReactDOM.render(
   <React.StrictMode>
     <MantineProvider withGlobalStyles withNormalizeCSS theme={myTheme}>
-      <App />
+      <AboutTaskProvider>
+        <App />
+      </AboutTaskProvider>
     </MantineProvider>
   </React.StrictMode>,
   document.getElementById("root")

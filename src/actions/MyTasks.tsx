@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Checkbox } from "@mantine/core";
 import DummyData from "../api/DummyData";
 import CustomPagination from "./CustomPagination";
+import { useAboutTask } from "../contexts/AboutTaskContext";
 interface Task {
   id: number;
   task: string;
@@ -36,6 +37,12 @@ const MyTasks: React.FC = () => {
 
   const handleTaskClick = (taskId: number) => {
     setActiveTaskId(taskId === activeTaskId ? null : taskId);
+  };
+
+  const { openAboutTask } = useAboutTask();
+
+  const handleAboutTaskClick = () => {
+    openAboutTask();
   };
 
   return (
@@ -81,6 +88,8 @@ const MyTasks: React.FC = () => {
           </div>
         ))}
       </div>
+
+      <button onClick={handleAboutTaskClick}>Open About Task</button>
 
       <CustomPagination
         total={Math.ceil(tasks.length / tasksPerPage)}
