@@ -9,6 +9,7 @@ import { TimeInput } from "@mantine/dates";
 import useEditAddTaskStore from "../stores/EditAddTaskStore";
 import { useTaskStore } from "../stores/TaskStore";
 import { Task } from "../api/DummyData";
+import { useAboutTaskStore } from "../stores/AboutTaskStore";
 
 interface EditAddTaskProps {
   onClose: () => void;
@@ -20,13 +21,23 @@ const EditAddTask: React.FC<EditAddTaskProps> = ({ onClose, editMode }) => {
   const { addMode } = useEditAddTaskStore();
   const taskStore = useTaskStore();
 
-  const [task, setTask] = useState<Task>({
-    id: "",
-    task: "",
-    startTime: "00:00",
-    endTime: "00:00",
-    date: "12/03/1200",
-    completed: false,
+  const aboutTaskStore = useAboutTaskStore();
+
+  // take selected task from here
+  const { selectedTask } = useAboutTaskStore();
+
+  const [task, setTask] = useState<Task>(() => {
+    if (editMode && selectedTask) {
+      return selectedTask;
+    }
+    return {
+      id: "",
+      task: "",
+      startTime: "00:00",
+      endTime: "00:00",
+      date: "12/03/1200",
+      completed: false,
+    };
   });
 
   useEffect(() => {
@@ -56,6 +67,9 @@ const EditAddTask: React.FC<EditAddTaskProps> = ({ onClose, editMode }) => {
     } else if (editMode) {
       taskStore.editTask(task.id, task);
     }
+
+    aboutTaskStore.setSelectedTask(task);
+
     onClose();
   };
 
@@ -75,6 +89,7 @@ const EditAddTask: React.FC<EditAddTaskProps> = ({ onClose, editMode }) => {
       </div>
 
       <Textarea name="task" value={task.task} onChange={handleInputChange} />
+      {/* show selectedTask.task here in the text area already filled and editable when in edit mode */}
 
       <div className="flex items-center justify-between timeCard">
         <Input
