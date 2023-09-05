@@ -1,19 +1,63 @@
+// EditAddTask.tsx
+import React, { useState, useEffect } from "react";
 import { Button, Input, Textarea, UnstyledButton } from "@mantine/core";
 import { ReactComponent as CloseIcon } from "../assets/closeBIcon.svg";
 import { ReactComponent as CalendarB } from "../assets/calendarBIcon.svg";
 import { ReactComponent as TimeB } from "../assets/timeBIcon.svg";
 import { ReactComponent as Bell } from "../assets/notifyIcon.svg";
 import { TimeInput } from "@mantine/dates";
-import useTaskStore from "../stores/EditAddTaskStore";
+import useEditAddTaskStore from "../stores/EditAddTaskStore";
+import { useTaskStore } from "../stores/TaskStore";
+import { Task } from "../api/DummyData";
 
 interface EditAddTaskProps {
   onClose: () => void;
   editMode: boolean;
-  addMode: boolean; // Add this line
+  addMode: boolean;
 }
 
-const EditAddTask: React.FC<EditAddTaskProps> = ({ onClose }) => {
-  const { editMode } = useTaskStore();
+const EditAddTask: React.FC<EditAddTaskProps> = ({ onClose, editMode }) => {
+  const { addMode } = useEditAddTaskStore();
+  const taskStore = useTaskStore();
+
+  const [task, setTask] = useState<Task>({
+    id: 0,
+    task: "",
+    startTime: "00:00",
+    endTime: "00:00",
+    date: "12/03/1200",
+    completed: false,
+  });
+
+  useEffect(() => {
+    if (editMode) {
+      const selectedTask = taskStore.tasks.find(
+        (t) => t.id === taskStore.selectedTask?.id
+      );
+      if (selectedTask) {
+        setTask(selectedTask);
+      }
+    }
+  }, [editMode, taskStore.selectedTask, taskStore.tasks]);
+
+  const handleInputChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = event.target;
+    setTask((prevTask) => ({
+      ...prevTask,
+      [name]: value,
+    }));
+  };
+
+  const handleSave = () => {
+    if (addMode) {
+      taskStore.addTask(task);
+    } else if (editMode) {
+      taskStore.editTask(task.id, task);
+    }
+    onClose();
+  };
 
   return (
     <div className="p-24 shadow-xl flex flex-col gap-16">
@@ -30,14 +74,29 @@ const EditAddTask: React.FC<EditAddTaskProps> = ({ onClose }) => {
         </UnstyledButton>
       </div>
 
-      <Textarea />
+      <Textarea name="task" value={task.task} onChange={handleInputChange} />
 
       <div className="flex items-center justify-between timeCard">
-        <Input icon={<CalendarB />} defaultValue="12/03/1200" />
+        <Input
+          name="date"
+          icon={<CalendarB />}
+          value={task.date}
+          onChange={handleInputChange}
+        />
 
         <div className="flex gap-16">
-          <TimeInput icon={<TimeB />} defaultValue="00:00" />
-          <TimeInput icon={<TimeB />} defaultValue="00:00" />
+          <TimeInput
+            name="startTime"
+            icon={<TimeB />}
+            value={task.startTime}
+            onChange={handleInputChange}
+          />
+          <TimeInput
+            name="endTime"
+            icon={<TimeB />}
+            value={task.endTime}
+            onChange={handleInputChange}
+          />
         </div>
       </div>
 
@@ -62,7 +121,11 @@ const EditAddTask: React.FC<EditAddTaskProps> = ({ onClose }) => {
           Cancel
         </Button>
 
-        <Button className="w-162 !px-16 !py-10 h-40" radius="md">
+        <Button
+          className="w-162 !px-16 !py-10 h-40"
+          radius="md"
+          onClick={handleSave}
+        >
           {editMode ? "Save" : "Add"}{" "}
         </Button>
       </div>

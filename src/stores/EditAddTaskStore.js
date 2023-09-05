@@ -1,8 +1,8 @@
 // store.js
-import create from "zustand";
+import { create } from "zustand";
 
 // Create your Zustand store
-const useTaskStore = create((set) => ({
+const useEditAddTaskStore = create((set) => ({
   editMode: false,
   addMode: false,
 
@@ -17,4 +17,4 @@ const useTaskStore = create((set) => ({
   resetMode: () => set({ editMode: false, addMode: false }),
 }));
 
-export default useTaskStore;
+export default useEditAddTaskStore;

@@ -1,43 +1,73 @@
 import React, { useEffect } from "react";
 import axios from "axios";
 
-interface DummyDataProps {
-  onDataFetched: (data: Task[]) => void;
-}
+const API_BASE_URL = "https://jsonplaceholder.typicode.com/todos";
 
-interface Task {
+export interface Task {
   id: number;
   task: string;
-  time: string;
+  startTime: string; // Add startTime field
+  endTime: string; // Add endTime field
   date: string;
   completed: boolean;
 }
 
+export const fetchTasks = async (): Promise<Task[]> => {
+  try {
+    const response = await axios.get(API_BASE_URL);
+    const responseData: Task[] = response.data.map((item: any) => ({
+      id: item.id,
+      task: item.title,
+      startTime: "8:00 am",
+      endTime: "10:00 pm",
+      date: "3, sept, 2023",
+      completed: item.completed,
+    }));
+    return responseData;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const addTaskToApi = async (task: any): Promise<any> => {
+  try {
+    const response = await axios.post(API_BASE_URL, task);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const editTaskInApi = async (
+  taskId: any,
+  updatedTask: any
+): Promise<any> => {
+  try {
+    const response = await axios.put(`${API_BASE_URL}/${taskId}`, updatedTask);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+interface DummyDataProps {
+  onDataFetched: (data: Task[]) => void;
+}
+
 const DummyData: React.FC<DummyDataProps> = ({ onDataFetched }) => {
-  // Fetch Tasks
-  const fetchData = async () => {
-    try {
-      const response = await axios.get(
-        "https://jsonplaceholder.typicode.com/todos"
-      );
-      const responseData = response.data.map((item: any) => ({
-        id: item.id,
-        task: item.title,
-        time: "8:00am - 10:00am",
-        date: "3, sept, 2023",
-        completed: item.completed,
-      }));
-      onDataFetched(responseData);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
-
-  // Add Task
-
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await fetchTasks();
+        onDataFetched(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    console.log("Fetching data...");
     fetchData();
-  }, []);
+  }, [onDataFetched]);
 
   return null;
 };

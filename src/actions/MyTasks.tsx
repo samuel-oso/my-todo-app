@@ -1,36 +1,28 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Checkbox } from "@mantine/core";
-import DummyData from "../api/DummyData";
 import CustomPagination from "./CustomPagination";
 import { useAboutTaskStore } from "../stores/AboutTaskStore";
-
-export interface Task {
-  id: number;
-  task: string;
-  time: string;
-  date: string;
-  completed: boolean;
-}
+import { useTaskStore } from "../stores/TaskStore";
+import { fetchTasks } from "../api/DummyData";
 
 const MyTasks: React.FC = () => {
-  const [tasks, setTasks] = useState<Task[]>([]);
+  const tasks = useTaskStore((state) => state.tasks);
+  const addTaskToStore = useTaskStore((state) => state.addTask);
+  const editTaskInStore = useTaskStore((state) => state.editTask);
+
   const [currentPage, setCurrentPage] = useState(1);
   const tasksPerPage = 7;
   const [activeTaskId, setActiveTaskId] = useState<number | null>(null);
 
   const toggleTaskCompletion = (taskId: number) => {
-    setTasks((prevTasks) =>
-      prevTasks.map((task) =>
-        task.id === taskId ? { ...task, completed: !task.completed } : task
-      )
-    );
+    const taskToUpdate = tasks.find((task) => task.id === taskId);
+    if (taskToUpdate) {
+      editTaskInStore(taskId, {
+        ...taskToUpdate, // Keep the existing properties
+        completed: !taskToUpdate.completed, // Toggle the completed status
+      });
+    }
   };
-
-  const onDataFetched = (data: Task[]) => {
-    setTasks(data);
-  };
-
-  useEffect(() => {}, []);
 
   const startIndex = (currentPage - 1) * tasksPerPage;
   const endIndex = startIndex + tasksPerPage;
@@ -46,9 +38,22 @@ const MyTasks: React.FC = () => {
 
     if (selectedTask !== undefined) {
       setSelectedTask(selectedTask);
-    } else {
     }
   };
+
+  useEffect(() => {
+    // Fetch tasks when the component mounts
+    fetchTasks()
+      .then((data) => {
+        // Add each task to the store using addTaskToStore function
+        data.forEach((task: any) => {
+          addTaskToStore(task);
+        });
+      })
+      .catch((error) => {
+        console.error("Error fetching tasks:", error);
+      });
+  }, [addTaskToStore]);
 
   return (
     <section>
@@ -82,7 +87,7 @@ const MyTasks: React.FC = () => {
                         : "text-gray-600"
                     } leading-[20px]`}
                   >
-                    {task.time}
+                    {task.startTime} - {task.endTime}
                   </p>
                 </div>
               }
@@ -99,9 +104,6 @@ const MyTasks: React.FC = () => {
         value={currentPage}
         onChange={(newValue) => setCurrentPage(newValue)}
       />
-
-      {/* Render DummyData component to fetch and pass data */}
-      <DummyData onDataFetched={onDataFetched} />
     </section>
   );
 };

@@ -2,7 +2,7 @@ import React from "react";
 import Calendar from "../inputs/Calendar";
 import EditAddTask from "../actions/EditAddTask";
 import AboutTask from "../actions/AboutTask";
-import useTaskStore from "../stores/EditAddTaskStore";
+import useEditAddTaskStore from "../stores/EditAddTaskStore";
 import { useAboutTaskStore } from "../stores/AboutTaskStore";
 
 interface TasksActionProps {
@@ -14,7 +14,7 @@ interface TasksActionProps {
 
 const TasksAction: React.FC<TasksActionProps> = ({ onCalendarDateChange }) => {
   const { isAboutTaskOpen, closeAboutTask } = useAboutTaskStore();
-  const { addMode, editMode, resetMode } = useTaskStore(); // Import addMode and editMode from the Zustand store
+  const { addMode, editMode, resetMode } = useEditAddTaskStore(); // Import addMode and editMode from the Zustand store
 
   return (
     <div className="w-394">

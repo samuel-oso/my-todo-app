@@ -2,7 +2,7 @@ import { Button, UnstyledButton } from "@mantine/core";
 import { ReactComponent as CloseIcon } from "../assets/closeIcon.svg";
 import { ReactComponent as CalendarIcon } from "../assets/calendarIcon.svg";
 import { ReactComponent as TimeIcon } from "../assets/timeIcon.svg";
-import useTaskStore from "../stores/EditAddTaskStore";
+import useEditAddTaskStore from "../stores/EditAddTaskStore";
 import { useAboutTaskStore } from "../stores/AboutTaskStore";
 
 interface AboutTaskProps {
@@ -12,7 +12,7 @@ interface AboutTaskProps {
 const AboutTask: React.FC<AboutTaskProps> = ({ onClose }) => {
   const { selectedTask } = useAboutTaskStore();
 
-  const { setEditMode } = useTaskStore();
+  const { setEditMode } = useEditAddTaskStore();
 
   const handleEditClick = () => {
     console.log("Setting edit mode"); // Add this line for debugging
@@ -42,7 +42,9 @@ const AboutTask: React.FC<AboutTaskProps> = ({ onClose }) => {
               </div>
               <div className="flex items-center gap-8">
                 <TimeIcon />
-                <p>{selectedTask?.time}</p>
+                <p>
+                  {selectedTask?.startTime} - {selectedTask?.endTime}
+                </p>
               </div>
             </div>
 

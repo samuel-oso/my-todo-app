@@ -1,6 +1,6 @@
 import { Button } from "@mantine/core";
 import Plus from "../assets/plusIcon.svg";
-import useTaskStore from "../stores/EditAddTaskStore";
+import useEditAddTaskStore from "../stores/EditAddTaskStore";
 
 interface HeaderProps {
   onCreateTaskClick: () => void;
@@ -19,7 +19,7 @@ const Header: React.FC<HeaderProps> = () => {
     greeting = "Good evening!";
   }
 
-  const { setAddMode } = useTaskStore();
+  const { setAddMode } = useEditAddTaskStore();
 
   const handleAddClick = () => {
     setAddMode(); // Trigger the add mode
