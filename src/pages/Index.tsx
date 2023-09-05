@@ -18,7 +18,7 @@ const Index = () => {
   };
 
   const handleCloseEditAddTask = () => {
-    setIsEditAddTaskOpen(false);
+    setIsEditAddTaskOpen(!isEditAddTaskOpen);
   };
 
   return (

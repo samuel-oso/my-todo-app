@@ -12,7 +12,7 @@ interface AboutTaskProps {
 const AboutTask: React.FC<AboutTaskProps> = ({ onClose }) => {
   const { selectedTask } = useAboutTaskStore();
 
-  const { editMode, setEditMode } = useTaskStore();
+  const { setEditMode } = useTaskStore();
 
   const handleEditClick = () => {
     console.log("Setting edit mode"); // Add this line for debugging
