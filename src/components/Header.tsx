@@ -1,6 +1,6 @@
 import { Button } from "@mantine/core";
 import Plus from "../assets/plusIcon.svg";
-import useTaskStore from "../stores/TaskStore";
+import useTaskStore from "../stores/EditAddTaskStore";
 
 interface HeaderProps {
   onCreateTaskClick: () => void;

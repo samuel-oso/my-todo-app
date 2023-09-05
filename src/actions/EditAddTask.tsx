@@ -4,7 +4,7 @@ import { ReactComponent as CalendarB } from "../assets/calendarBIcon.svg";
 import { ReactComponent as TimeB } from "../assets/timeBIcon.svg";
 import { ReactComponent as Bell } from "../assets/notifyIcon.svg";
 import { TimeInput } from "@mantine/dates";
-import useTaskStore from "../stores/TaskStore";
+import useTaskStore from "../stores/EditAddTaskStore";
 
 interface EditAddTaskProps {
   onClose: () => void;

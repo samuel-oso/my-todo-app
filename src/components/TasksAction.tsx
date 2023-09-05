@@ -2,7 +2,7 @@ import React from "react";
 import Calendar from "../inputs/Calendar";
 import EditAddTask from "../actions/EditAddTask";
 import AboutTask from "../actions/AboutTask";
-import useTaskStore from "../stores/TaskStore";
+import useTaskStore from "../stores/EditAddTaskStore";
 import { useAboutTaskStore } from "../stores/AboutTaskStore";
 
 interface TasksActionProps {

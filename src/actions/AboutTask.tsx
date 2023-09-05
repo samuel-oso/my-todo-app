@@ -2,7 +2,7 @@ import { Button, UnstyledButton } from "@mantine/core";
 import { ReactComponent as CloseIcon } from "../assets/closeIcon.svg";
 import { ReactComponent as CalendarIcon } from "../assets/calendarIcon.svg";
 import { ReactComponent as TimeIcon } from "../assets/timeIcon.svg";
-import useTaskStore from "../stores/TaskStore";
+import useTaskStore from "../stores/EditAddTaskStore";
 import { useAboutTaskStore } from "../stores/AboutTaskStore";
 
 interface AboutTaskProps {
