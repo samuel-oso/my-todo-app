@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Checkbox } from "@mantine/core";
 import DummyData from "../api/DummyData";
 import CustomPagination from "./CustomPagination";
-import { useAboutTask } from "../contexts/AboutTaskContext";
+import { useAboutTaskStore } from "../stores/AboutTaskStore";
 
 export interface Task {
   id: number;
@@ -37,7 +37,7 @@ const MyTasks: React.FC = () => {
 
   const tasksToDisplay = tasks.slice(startIndex, endIndex);
 
-  const { setSelectedTask, openAboutTask } = useAboutTask();
+  const { setSelectedTask, openAboutTask } = useAboutTaskStore();
 
   const handleTaskClick = (taskId: number) => {
     const selectedTask = tasks.find((task) => task.id === taskId);

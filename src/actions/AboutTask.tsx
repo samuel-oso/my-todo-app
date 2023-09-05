@@ -2,25 +2,34 @@ import { Button, UnstyledButton } from "@mantine/core";
 import { ReactComponent as CloseIcon } from "../assets/closeIcon.svg";
 import { ReactComponent as CalendarIcon } from "../assets/calendarIcon.svg";
 import { ReactComponent as TimeIcon } from "../assets/timeIcon.svg";
-import { useAboutTask } from "../contexts/AboutTaskContext";
+import useTaskStore from "../stores/TaskStore";
+import { useAboutTaskStore } from "../stores/AboutTaskStore";
 
 interface AboutTaskProps {
   onClose: () => void;
 }
 
 const AboutTask: React.FC<AboutTaskProps> = ({ onClose }) => {
-  const { selectedTask } = useAboutTask();
+  const { selectedTask } = useAboutTaskStore();
+
+  const { editMode, setEditMode } = useTaskStore();
+
+  const handleEditClick = () => {
+    console.log("Setting edit mode"); // Add this line for debugging
+    setEditMode(true); // Set editMode to true
+  };
 
   return (
     <div className="px-24 py-20 shadow-xl flex flex-col gap-16">
       {selectedTask && (
         <>
           <UnstyledButton
-            className="w-full flex justify-end items-center"
             onClick={onClose}
+            className="w-full flex justify-end items-center"
           >
             <CloseIcon />
           </UnstyledButton>
+
           <div className="flex flex-col gap-32">
             <h4 className="text-lg font-semibold leading-[120%] text-gray-400">
               {selectedTask.task}
@@ -46,7 +55,11 @@ const AboutTask: React.FC<AboutTaskProps> = ({ onClose }) => {
               >
                 Delete
               </Button>
-              <Button className="w-162 !px-16 !py-10 h-40" radius="md">
+              <Button
+                className="w-162 !px-16 !py-10 h-40"
+                radius="md"
+                onClick={handleEditClick}
+              >
                 Edit
               </Button>
             </div>

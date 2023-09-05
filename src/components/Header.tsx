@@ -1,11 +1,12 @@
 import { Button } from "@mantine/core";
 import Plus from "../assets/plusIcon.svg";
+import useTaskStore from "../stores/TaskStore";
 
 interface HeaderProps {
   onCreateTaskClick: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ onCreateTaskClick }) => {
+const Header: React.FC<HeaderProps> = () => {
   const currentTime = new Date();
   const currentHour = currentTime.getHours();
   let greeting = "Hello!";
@@ -18,6 +19,12 @@ const Header: React.FC<HeaderProps> = ({ onCreateTaskClick }) => {
     greeting = "Good evening!";
   }
 
+  const { setAddMode } = useTaskStore();
+
+  const handleAddClick = () => {
+    setAddMode(); // Trigger the add mode
+  };
+
   return (
     <section className="px-32 pt-48 flex justify-between items-start">
       <div className="flex flex-col gap-4">
@@ -29,7 +36,7 @@ const Header: React.FC<HeaderProps> = ({ onCreateTaskClick }) => {
         leftIcon={<img src={Plus} alt="plus-icon" />}
         className="!px-16 !py-10 h-40"
         radius="md"
-        onClick={onCreateTaskClick}
+        onClick={handleAddClick}
       >
         Create New Task
       </Button>
