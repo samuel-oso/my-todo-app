@@ -21,7 +21,7 @@ const EditAddTask: React.FC<EditAddTaskProps> = ({ onClose, editMode }) => {
   const taskStore = useTaskStore();
 
   const [task, setTask] = useState<Task>({
-    id: 0,
+    id: "",
     task: "",
     startTime: "00:00",
     endTime: "00:00",
