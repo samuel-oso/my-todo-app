@@ -1,11 +1,11 @@
 // EditAddTask.tsx
 import React, { useState, useEffect } from "react";
-import { Button, Input, Textarea, UnstyledButton } from "@mantine/core";
+import { Button, Textarea, UnstyledButton } from "@mantine/core";
 import { ReactComponent as CloseIcon } from "../assets/closeBIcon.svg";
 import { ReactComponent as CalendarB } from "../assets/calendarBIcon.svg";
 import { ReactComponent as TimeB } from "../assets/timeBIcon.svg";
 import { ReactComponent as Bell } from "../assets/notifyIcon.svg";
-import { TimeInput } from "@mantine/dates";
+import { TimeInput, DateInput } from "@mantine/dates";
 import useEditAddTaskStore from "../stores/EditAddTaskStore";
 import { useTaskStore } from "../stores/TaskStore";
 import { Task } from "../api/DummyData";
@@ -92,14 +92,23 @@ const EditAddTask: React.FC<EditAddTaskProps> = ({ onClose, editMode }) => {
       {/* show selectedTask.task here in the text area already filled and editable when in edit mode */}
 
       <div className="flex items-center justify-between timeCard">
-        <Input
+        <DateInput
           name="date"
           icon={<CalendarB />}
-          value={task.date}
-          onChange={handleInputChange}
+          value={task.date ? new Date(task.date) : null}
+          valueFormat="DD/MM/YY"
+          onChange={(dateValue) => {
+            if (dateValue instanceof Date) {
+              // Handle date input change here
+              setTask((prevTask) => ({
+                ...prevTask,
+                date: dateValue.toISOString().split("T")[0], // Convert Date back to string
+              }));
+            }
+          }}
         />
 
-        <div className="flex gap-16">
+        <div className="flex gap-10">
           <TimeInput
             name="startTime"
             icon={<TimeB />}

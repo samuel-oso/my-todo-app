@@ -18,9 +18,9 @@ export const fetchTasks = async (): Promise<Task[]> => {
     const responseData: Task[] = response.data.map((item: any) => ({
       id: item.id,
       task: item.title,
-      startTime: "8:00 am",
-      endTime: "10:00 pm",
-      date: "3, sept, 2023",
+      startTime: "08:00",
+      endTime: "20:00",
+      date: "01/01/2024",
       completed: item.completed,
     }));
     return responseData;

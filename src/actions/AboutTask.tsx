@@ -4,6 +4,7 @@ import { ReactComponent as CalendarIcon } from "../assets/calendarIcon.svg";
 import { ReactComponent as TimeIcon } from "../assets/timeIcon.svg";
 import useEditAddTaskStore from "../stores/EditAddTaskStore";
 import { useAboutTaskStore } from "../stores/AboutTaskStore";
+import { formatDate } from "../inputs/DateUtils";
 
 interface AboutTaskProps {
   onClose: () => void;
@@ -38,7 +39,7 @@ const AboutTask: React.FC<AboutTaskProps> = ({ onClose }) => {
             <div className="flex flex-col gap-8 leading-[120%] font-medium text-gray-400">
               <div className="flex items-center gap-8">
                 <CalendarIcon />
-                <p>{selectedTask?.date}</p>
+                <p>{formatDate(selectedTask?.date)}</p>{" "}
               </div>
               <div className="flex items-center gap-8">
                 <TimeIcon />

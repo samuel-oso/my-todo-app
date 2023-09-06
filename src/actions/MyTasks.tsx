@@ -4,6 +4,7 @@ import CustomPagination from "./CustomPagination";
 import { useAboutTaskStore } from "../stores/AboutTaskStore";
 import { useTaskStore } from "../stores/TaskStore";
 import { fetchTasks } from "../api/DummyData";
+import { formatDateDDMMYYYY } from "../inputs/DateUtils";
 
 const MyTasks: React.FC = () => {
   const tasks = useTaskStore((state) => state.tasks);
@@ -94,7 +95,9 @@ const MyTasks: React.FC = () => {
               checked={task.completed}
               onChange={() => toggleTaskCompletion(task.id)}
             />
-            <p className="text-sm text-gray-600 leading-[20px]">Today</p>
+            <p className="text-sm text-gray-600 leading-[20px]">
+              {formatDateDDMMYYYY(task.date)}
+            </p>
           </div>
         ))}
       </div>
