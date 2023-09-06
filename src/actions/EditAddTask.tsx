@@ -35,7 +35,7 @@ const EditAddTask: React.FC<EditAddTaskProps> = ({ onClose, editMode }) => {
       task: "",
       startTime: "00:00",
       endTime: "00:00",
-      date: "12/03/1200",
+      date: "01/08/23",
       completed: false,
     };
   });

@@ -20,7 +20,7 @@ export const fetchTasks = async (): Promise<Task[]> => {
       task: item.title,
       startTime: "08:00",
       endTime: "20:00",
-      date: "01/01/2024",
+      date: "01/08/23",
       completed: item.completed,
     }));
     return responseData;
