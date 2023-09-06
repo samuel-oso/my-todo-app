@@ -4,7 +4,7 @@ import CustomPagination from "./CustomPagination";
 import { useAboutTaskStore } from "../stores/AboutTaskStore";
 import { useTaskStore } from "../stores/TaskStore";
 import { fetchTasks } from "../api/DummyData";
-import { formatDateDDMMYYYY } from "../inputs/DateUtils";
+import { formatTaskDate } from "../inputs/DateUtils";
 
 const MyTasks: React.FC = () => {
   const tasks = useTaskStore((state) => state.tasks);
@@ -58,7 +58,7 @@ const MyTasks: React.FC = () => {
         } finally {
           setIsLoading(false);
         }
-      }, 1000); // 2-second delay
+      }, 1000);
     };
 
     fetchData();
@@ -110,7 +110,7 @@ const MyTasks: React.FC = () => {
                 onChange={() => toggleTaskCompletion(task.id)}
               />
               <p className="text-sm text-gray-600 leading-[20px]">
-                {formatDateDDMMYYYY(task.date)}
+                {formatTaskDate(task.date)}
               </p>
             </div>
           ))}

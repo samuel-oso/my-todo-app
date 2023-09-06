@@ -1,5 +1,3 @@
-// dateUtils.ts
-
 export const formatDate = (dateString: string) => {
   const date = new Date(dateString);
   const day = date.getDate();
@@ -26,8 +24,18 @@ const getDaySuffix = (day: number) => {
   }
 };
 
-export const formatDateDDMMYYYY = (dateString: string) => {
+export const formatTaskDate = (dateString: string) => {
   const date = new Date(dateString);
+  const today = new Date(); // Get the current date
+
+  if (
+    date.getDate() === today.getDate() &&
+    date.getMonth() === today.getMonth() &&
+    date.getFullYear() === today.getFullYear()
+  ) {
+    return "Today";
+  }
+
   const day = String(date.getDate()).padStart(2, "0");
   const month = String(date.getMonth() + 1).padStart(2, "0"); // Note: Months are zero-based, so we add 1
   const year = date.getFullYear();
