@@ -1,5 +1,3 @@
-// taskStore.ts
-
 import { create } from "zustand";
 import { Task } from "../api/DummyData";
 
@@ -8,7 +6,8 @@ interface TaskStore {
   setTasks: (tasks: Task[]) => void;
   addTask: (task: Task) => void;
   editTask: (taskId: number, updatedTask: Task) => void;
-  selectedTask: Task | null; // Include selectedTask property
+  deleteTask: (taskId: number) => void; // Add deleteTask action
+  selectedTask: Task | null;
 }
 
 export const useTaskStore = create<TaskStore>((set) => ({
@@ -21,5 +20,10 @@ export const useTaskStore = create<TaskStore>((set) => ({
         task.id === taskId ? { ...task, ...updatedTask } : task
       ),
     })),
-  selectedTask: null, // Initialize selectedTask as null
+  deleteTask: (taskId) => {
+    set((state) => ({
+      tasks: state.tasks.filter((task) => task.id !== taskId),
+    }));
+  },
+  selectedTask: null,
 }));

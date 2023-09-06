@@ -50,6 +50,14 @@ export const editTaskInApi = async (
   }
 };
 
+export const deleteTaskFromApi = async (taskId: any): Promise<void> => {
+  try {
+    await axios.delete(`${API_BASE_URL}/${taskId}`);
+  } catch (error) {
+    throw error;
+  }
+};
+
 interface DummyDataProps {
   onDataFetched: (data: Task[]) => void;
 }

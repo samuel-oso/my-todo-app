@@ -5,6 +5,7 @@ import { ReactComponent as TimeIcon } from "../assets/timeIcon.svg";
 import useEditAddTaskStore from "../stores/EditAddTaskStore";
 import { useAboutTaskStore } from "../stores/AboutTaskStore";
 import { formatDate } from "../inputs/DateUtils";
+import { useTaskStore } from "../stores/TaskStore";
 
 interface AboutTaskProps {
   onClose: () => void;
@@ -12,12 +13,19 @@ interface AboutTaskProps {
 
 const AboutTask: React.FC<AboutTaskProps> = ({ onClose }) => {
   const { selectedTask } = useAboutTaskStore();
-
+  const taskStore = useTaskStore();
   const { setEditMode } = useEditAddTaskStore();
 
   const handleEditClick = () => {
     console.log("Setting edit mode"); // Add this line for debugging
     setEditMode(true); // Set editMode to true
+  };
+
+  const handleDeleteClick = () => {
+    if (selectedTask) {
+      taskStore.deleteTask(selectedTask.id); // Call the deleteTask function from the task store
+    }
+    onClose();
   };
 
   return (
@@ -55,6 +63,7 @@ const AboutTask: React.FC<AboutTaskProps> = ({ onClose }) => {
                 className="w-162 !px-16 !py-10 h-40 text-gray-700"
                 radius="md"
                 style={{ border: "1px solid #D0D5DD" }}
+                onClick={handleDeleteClick}
               >
                 Delete
               </Button>
