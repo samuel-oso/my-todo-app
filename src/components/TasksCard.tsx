@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from "react";
 import MyTasks from "../actions/MyTasks";
-
 interface TasksCardProps {
   selectedDate: Date | null;
   onDateSelect: (date: Date) => void; // Prop to handle date selection

@@ -73,6 +73,8 @@ const EditAddTask: React.FC<EditAddTaskProps> = ({ onClose, editMode }) => {
     onClose();
   };
 
+  const isTaskEmpty = task.task.trim() === "";
+
   return (
     <div className="p-24 shadow-xl flex flex-col gap-16">
       <div className="flex items-center justify-between">
@@ -149,6 +151,7 @@ const EditAddTask: React.FC<EditAddTaskProps> = ({ onClose, editMode }) => {
           className="w-162 !px-16 !py-10 h-40"
           radius="md"
           onClick={handleSave}
+          disabled={isTaskEmpty}
         >
           {editMode ? "Save" : "Add"}{" "}
         </Button>
