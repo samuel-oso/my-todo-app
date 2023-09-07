@@ -8,7 +8,7 @@ export interface Task {
   task: string;
   startTime: string; // Add startTime field
   endTime: string; // Add endTime field
-  date: string;
+  date: any;
   completed: boolean;
 }
 
