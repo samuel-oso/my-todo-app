@@ -95,7 +95,6 @@ const MyTasks: React.FC = () => {
                     >
                       {task.task}
                     </p>
-                    <p>{task.id}</p>
                     <p
                       className={`text-sm ${
                         task.completed
