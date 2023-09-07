@@ -129,6 +129,7 @@ video {
 .mantine-kfwbxd {
   border-radius: 6px;
   border: 1px solid #ced4da;
+  cursor: pointer;
 }
 
 .mantine-kfwbxd:checked {

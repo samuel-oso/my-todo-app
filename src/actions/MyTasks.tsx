@@ -85,7 +85,7 @@ const MyTasks: React.FC = () => {
             >
               <Checkbox
                 label={
-                  <div>
+                  <div className="cursor-pointer">
                     <p
                       className={`mb-4 text-sm font-medium ${
                         task.completed
@@ -95,6 +95,7 @@ const MyTasks: React.FC = () => {
                     >
                       {task.task}
                     </p>
+                    <p>{task.id}</p>
                     <p
                       className={`text-sm ${
                         task.completed
