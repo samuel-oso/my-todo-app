@@ -58,10 +58,10 @@ const AboutTask: React.FC<AboutTaskProps> = ({ onClose }) => {
                 </div>
               </div>
 
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between gap-20">
                 <Button
                   variant="outline"
-                  className="w-162 !px-16 !py-10 h-40 text-gray-700"
+                  className="w-1/2 !px-16 !py-10 h-40 text-gray-700"
                   radius="md"
                   style={{ border: "1px solid #D0D5DD" }}
                   onClick={handleDeleteClick}
@@ -69,7 +69,7 @@ const AboutTask: React.FC<AboutTaskProps> = ({ onClose }) => {
                   Delete
                 </Button>
                 <Button
-                  className="w-162 !px-16 !py-10 h-40"
+                  className="w-1/2 !px-16 !py-10 h-40"
                   radius="md"
                   onClick={handleEditClick}
                 >
