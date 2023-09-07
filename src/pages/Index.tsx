@@ -22,11 +22,11 @@ const Index = () => {
   };
 
   return (
-    <main>
+    <main className="relative">
       <Navbar />
       <div className="max-w-[1340px] m-auto">
         <Header onCreateTaskClick={handleCreateTaskClick} />
-        <main className="px-32 mt-32 flex justify-between pb-96">
+        <main className="lg:px-32  mt-32 flex justify-between pb-100 flex-col lg:flex-row">
           <TasksCard
             selectedDate={selectedDate}
             onDateSelect={handleDateSelect}

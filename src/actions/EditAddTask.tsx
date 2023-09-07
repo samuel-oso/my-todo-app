@@ -76,85 +76,87 @@ const EditAddTask: React.FC<EditAddTaskProps> = ({ onClose, editMode }) => {
   const isTaskEmpty = task.task.trim() === "";
 
   return (
-    <div className="p-24 shadow-xl flex flex-col gap-16">
-      <div className="flex items-center justify-between">
-        <h4
-          className={`text-gray-900 text-lg font-semibold ${
-            editMode ? "text-red-600" : ""
-          }`}
-        >
-          {editMode ? "Edit" : "Create new"} task
-        </h4>
-        <UnstyledButton onClick={onClose}>
-          <CloseIcon />
-        </UnstyledButton>
-      </div>
-
-      <Textarea name="task" value={task.task} onChange={handleInputChange} />
-      {/* show selectedTask.task here in the text area already filled and editable when in edit mode */}
-
-      <div className="flex items-center justify-between timeCard">
-        <DateInput
-          name="date"
-          icon={<CalendarB />}
-          value={task.date ? new Date(task.date) : null}
-          valueFormat="DD/MM/YY"
-          onChange={(dateValue) => {
-            if (dateValue instanceof Date) {
-              // Handle date input change here
-              setTask((prevTask) => ({
-                ...prevTask,
-                date: dateValue.toISOString().split("T")[0], // Convert Date back to string
-              }));
-            }
-          }}
-        />
-
-        <div className="flex gap-10">
-          <TimeInput
-            name="startTime"
-            icon={<TimeB />}
-            value={task.startTime}
-            onChange={handleInputChange}
-          />
-          <TimeInput
-            name="endTime"
-            icon={<TimeB />}
-            value={task.endTime}
-            onChange={handleInputChange}
-          />
+    <div className="overlay">
+      <div className="p-24 shadow-xl flex flex-col gap-16 taskAction">
+        <div className="flex items-center justify-between">
+          <h4
+            className={`text-gray-900 text-lg font-semibold ${
+              editMode ? "text-red-600" : ""
+            }`}
+          >
+            {editMode ? "Edit" : "Create new"} task
+          </h4>
+          <UnstyledButton onClick={onClose}>
+            <CloseIcon />
+          </UnstyledButton>
         </div>
-      </div>
 
-      <div className="flex items-center justify-between">
-        <div className="flex gap-8 items-center">
-          <Bell />
-          <p className="font-medium text-[#667085]">10 Minutes before</p>
+        <Textarea name="task" value={task.task} onChange={handleInputChange} />
+        {/* show selectedTask.task here in the text area already filled and editable when in edit mode */}
+
+        <div className="flex items-center justify-between timeCard">
+          <DateInput
+            name="date"
+            icon={<CalendarB />}
+            value={task.date ? new Date(task.date) : null}
+            valueFormat="DD/MM/YY"
+            onChange={(dateValue) => {
+              if (dateValue instanceof Date) {
+                // Handle date input change here
+                setTask((prevTask) => ({
+                  ...prevTask,
+                  date: dateValue.toISOString().split("T")[0], // Convert Date back to string
+                }));
+              }
+            }}
+          />
+
+          <div className="flex gap-10">
+            <TimeInput
+              name="startTime"
+              icon={<TimeB />}
+              value={task.startTime}
+              onChange={handleInputChange}
+            />
+            <TimeInput
+              name="endTime"
+              icon={<TimeB />}
+              value={task.endTime}
+              onChange={handleInputChange}
+            />
+          </div>
         </div>
-        <UnstyledButton>
-          <CloseIcon className="w-16 h-16" />
-        </UnstyledButton>
-      </div>
 
-      <div className="flex items-center justify-between mt-16">
-        <Button
-          variant="outline"
-          className="w-162 !px-16 !py-10 h-40 text-gray-700"
-          radius="md"
-          style={{ border: "1px solid #D0D5DD" }}
-          onClick={onClose}
-        >
-          Cancel
-        </Button>
+        <div className="flex items-center justify-between">
+          <div className="flex gap-8 items-center">
+            <Bell />
+            <p className="font-medium text-[#667085]">10 Minutes before</p>
+          </div>
+          <UnstyledButton>
+            <CloseIcon className="w-16 h-16" />
+          </UnstyledButton>
+        </div>
 
-        <Button
-          className="w-162 !px-16 !py-10 h-40"
-          radius="md"
-          onClick={handleSave}
-          disabled={isTaskEmpty}
-        >
-          {editMode ? "Save" : "Add"}{" "}
-        </Button>
+        <div className="flex items-center justify-between mt-16">
+          <Button
+            variant="outline"
+            className="w-162 !px-16 !py-10 h-40 text-gray-700"
+            radius="md"
+            style={{ border: "1px solid #D0D5DD" }}
+            onClick={onClose}
+          >
+            Cancel
+          </Button>
+
+          <Button
+            className="w-162 !px-16 !py-10 h-40"
+            radius="md"
+            onClick={handleSave}
+            disabled={isTaskEmpty}
+          >
+            {editMode ? "Save" : "Add"}{" "}
+          </Button>
+        </div>
       </div>
     </div>
   );

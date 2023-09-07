@@ -32,7 +32,7 @@ const Calendar: React.FC<CalendarProps> = ({ onCalendarDateSelect }) => {
     }) || "";
 
   return (
-    <div className="px-24 py-20 h-390 shadow-xl">
+    <div className="px-24 py-20 h-390 shadow-xl hidden lg:block">
       <div className="relative">
         <div className="flex gap-12 mt-4 items-center absolute top-45 pb-12">
           <TextInput

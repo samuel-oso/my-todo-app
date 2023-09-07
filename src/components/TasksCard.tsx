@@ -1,5 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import MyTasks from "../actions/MyTasks";
+import { useMediaQuery } from "@mantine/hooks";
+
 interface TasksCardProps {
   selectedDate: Date | null;
   onDateSelect: (date: Date) => void; // Prop to handle date selection
@@ -10,6 +12,8 @@ const TasksCard: React.FC<TasksCardProps> = ({
   onDateSelect,
 }) => {
   const currentDate = selectedDate || new Date(); // Use selectedDate if available, otherwise use today's date
+
+  const isMobile = useMediaQuery("(max-width: 768px)");
 
   const year = currentDate.getFullYear();
   const month = currentDate.getMonth();
@@ -57,7 +61,7 @@ const TasksCard: React.FC<TasksCardProps> = ({
       <div
         key={day}
         ref={isActive ? selectedDateCardRef : null}
-        className={`px-16 py-10 min-w-[62px] h-68 flex flex-col justify-center items-center rounded-lg shadow-sm gap-8 text-sm font-semibold ${
+        className={`lg:px-16 lg:py-10 px-12 py-8 lg:min-w-[62px] min-w-[50px]  lg:h-68 h-55 flex flex-col justify-center items-center rounded-lg shadow-sm gap-8 text-sm font-semibold ${
           isActive
             ? "hover:bg-[#0e31f2] bg-[#3f5bf6]"
             : "hover:bg-[#67698c1a] bg-white"
@@ -65,23 +69,30 @@ const TasksCard: React.FC<TasksCardProps> = ({
         style={cardStyle}
         onClick={handleDateClick}
       >
-        <p style={textStyle}>{dayOfWeek}</p>
-        <p style={textStyle}>{day}</p>
+        <p className="lg:text-base text-xs" style={textStyle}>
+          {dayOfWeek}
+        </p>
+        <p className="lg:text-base text-xs" style={textStyle}>
+          {day}
+        </p>
       </div>
     );
   });
 
   return (
     <div
-      className="max-w-[842px] pl-32 pr-24 flex flex-col gap-32"
-      style={{ borderRight: "1px solid #eaecf0" }}
+      className="xl:max-w-[842px] lg:max-w-[540px] max-w-full pl-0 lg:pl-32 lg:pr-24 flex flex-col gap-32"
+      // this one
+      style={{
+        borderRight: isMobile ? "none" : "1px solid #eaecf0", // Apply borderRight for desktop
+      }}
     >
-      <div>
-        <p className="text-gray-900 font-semibold">
+      <div className="px-16 lg:px-0">
+        <p className="text-gray-900 font-semibold text-xs lg:text-base">
           {currentDate.toLocaleString("default", { month: "long" })} {year}
         </p>
 
-        <div className="flex items-center gap-16 mt-16 overflow-auto scrollbar-hide">
+        <div className="flex items-center gap-12 lg:gap-16 mt-16 overflow-auto scrollbar-hide">
           {dayCards}
         </div>
       </div>

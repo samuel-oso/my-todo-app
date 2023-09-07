@@ -65,7 +65,7 @@ const MyTasks: React.FC = () => {
   }, [addTaskToStore]);
 
   return (
-    <section>
+    <section className="px-16 lg:px-0">
       <p className="text-gray-900 font-semibold mb-16">My Tasks</p>
 
       {isLoading ? (
@@ -77,7 +77,7 @@ const MyTasks: React.FC = () => {
           {tasksToDisplay.map((task) => (
             <div
               key={task.id}
-              className={`px-24 py-16 flex justify-between items-center h-72 ${
+              className={`px-24 py-16 flex justify-between items-center cursor-pointer h-72 ${
                 task.id === activeTaskId ? "bg-[#EAEDFE]" : ""
               }`}
               style={{ borderBottom: "1px solid #EAECF0" }}

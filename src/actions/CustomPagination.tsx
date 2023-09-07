@@ -14,7 +14,7 @@ const CustomPagination: React.FC<CustomPaginationProps> = ({
 }) => {
   return (
     <Pagination
-      className="!gap-2 justify-center relative h-60 items-end mt-32"
+      className="!gap-2 justify-center relative h-60 items-end lg:mt-32 mt-16"
       total={total}
       value={value}
       onChange={onChange}
