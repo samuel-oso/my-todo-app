@@ -281,5 +281,10 @@ video {
   .timeCard .mantine-1py9fhb,
   .timeCard .mantine-1o6u3od {
     font-size: 12px;
+    padding: 10px 12px 10px 30px;
+  }
+
+  .timeCard .mantine-16k3d8y {
+    width: 2.25rem;
   }
 }
