@@ -73,7 +73,7 @@ const MyTasks: React.FC = () => {
           <Loader size={40} variant="dots" />
         </div>
       ) : (
-        <div className="flex flex-col gap-16 overflow-y-auto cursor-pointer">
+        <div className="flex flex-col gap-16 lg:overflow-y-auto">
           {tasksToDisplay.map((task) => (
             <div
               key={task.id}
