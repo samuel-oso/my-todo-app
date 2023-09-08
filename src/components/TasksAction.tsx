@@ -7,20 +7,19 @@ import { useAboutTaskStore } from "../stores/AboutTaskStore";
 
 interface TasksActionProps {
   onCalendarDateChange: (date: Date) => void;
-  onCloseEditAddTask: () => void; // Add this line
+  onCloseEditAddTask: () => void; 
   editMode: boolean;
   addMode: boolean;
 }
 
 const TasksAction: React.FC<TasksActionProps> = ({ onCalendarDateChange }) => {
   const { isAboutTaskOpen, closeAboutTask } = useAboutTaskStore();
-  const { addMode, editMode, resetMode } = useEditAddTaskStore(); // Import addMode and editMode from the Zustand store
-
+  const { addMode, editMode, resetMode } = useEditAddTaskStore(); 
   return (
     <div className="w-394">
       {addMode || editMode ? (
         <EditAddTask
-          onClose={() => resetMode()} // Close EditAddTask and reset modes
+          onClose={() => resetMode()} 
           editMode={editMode}
           addMode={addMode}
         />

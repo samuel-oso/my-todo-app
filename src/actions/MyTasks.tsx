@@ -46,7 +46,6 @@ const MyTasks: React.FC = () => {
     const fetchData = async () => {
       setIsLoading(true);
 
-      // Simulate a 2-second delay
       setTimeout(async () => {
         try {
           const data = await fetchTasks();

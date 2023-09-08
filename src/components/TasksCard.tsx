@@ -84,7 +84,7 @@ const TasksCard: React.FC<TasksCardProps> = ({
       className="xl:max-w-[842px] lg:max-w-[540px] max-w-full pl-0 lg:pl-32 lg:pr-24 flex flex-col gap-32"
       // this one
       style={{
-        borderRight: isMobile ? "none" : "1px solid #eaecf0", // Apply borderRight for desktop
+        borderRight: isMobile ? "none" : "1px solid #eaecf0",
       }}
     >
       <div className="px-16 lg:px-0">

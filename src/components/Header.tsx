@@ -23,7 +23,7 @@ const Header: React.FC<HeaderProps> = () => {
   const { setAddMode } = useEditAddTaskStore();
 
   const handleAddClick = () => {
-    setAddMode(); // Trigger the add mode
+    setAddMode(); 
   };
 
   return (

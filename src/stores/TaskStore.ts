@@ -6,7 +6,7 @@ interface TaskStore {
   setTasks: (tasks: Task[]) => void;
   addTask: (task: Task) => void;
   editTask: (taskId: number, updatedTask: Task) => void;
-  deleteTask: (taskId: number) => void; // Add deleteTask action
+  deleteTask: (taskId: number) => void;
   selectedTask: Task | null;
 }
 
@@ -15,7 +15,7 @@ export const useTaskStore = create<TaskStore>((set) => ({
   setTasks: (tasks) => set({ tasks }),
   addTask: (task) =>
     set((state) => ({
-      tasks: [{ ...task }, ...state.tasks], // Removed generateUniqueId()
+      tasks: [{ ...task }, ...state.tasks],
     })),
   editTask: (taskId, updatedTask) =>
     set((state) => ({

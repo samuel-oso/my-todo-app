@@ -7,7 +7,6 @@ import TasksAction from "../components/TasksAction";
 const Index = () => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [isEditAddTaskOpen, setIsEditAddTaskOpen] = useState(false);
-  // Define isEditAddTaskOpen here
 
   const handleDateSelect = (date: Date) => {
     setSelectedDate(date);

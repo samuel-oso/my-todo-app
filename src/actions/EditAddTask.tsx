@@ -92,7 +92,6 @@ const EditAddTask: React.FC<EditAddTaskProps> = ({ onClose, editMode }) => {
         </div>
 
         <Textarea name="task" value={task.task} onChange={handleInputChange} />
-        {/* show selectedTask.task here in the text area already filled and editable when in edit mode */}
 
         <div className="flex items-center justify-between timeCard">
           <DateInput
@@ -102,10 +101,9 @@ const EditAddTask: React.FC<EditAddTaskProps> = ({ onClose, editMode }) => {
             valueFormat="DD/MM/YY"
             onChange={(dateValue) => {
               if (dateValue instanceof Date) {
-                // Handle date input change here
                 setTask((prevTask) => ({
                   ...prevTask,
-                  date: dateValue.toISOString().split("T")[0], // Convert Date back to string
+                  date: dateValue.toISOString().split("T")[0],
                 }));
               }
             }}

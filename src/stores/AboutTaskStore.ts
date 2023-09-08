@@ -1,8 +1,6 @@
-// stores/aboutTaskStore.js
 import { create } from "zustand";
 import { Task } from "../api/DummyData";
 
-// Define your AboutTask store
 interface AboutTaskStore {
   isAboutTaskOpen: boolean;
   selectedTask: Task | null;

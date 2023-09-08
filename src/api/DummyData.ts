@@ -6,8 +6,8 @@ const API_BASE_URL = "https://jsonplaceholder.typicode.com/todos";
 export interface Task {
   id: any;
   task: string;
-  startTime: string; // Add startTime field
-  endTime: string; // Add endTime field
+  startTime: string;
+  endTime: string;
   date: any;
   completed: boolean;
 }
@@ -73,7 +73,6 @@ const DummyData: React.FC<DummyDataProps> = ({ onDataFetched }) => {
       }
     };
 
-    console.log("Fetching data...");
     fetchData();
   }, [onDataFetched]);
 

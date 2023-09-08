@@ -274,8 +274,8 @@ video {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
-    z-index: 9998; /* Below the .taskAction div */
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9998;
   }
 
   .timeCard .mantine-1py9fhb,

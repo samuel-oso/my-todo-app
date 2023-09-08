@@ -17,8 +17,7 @@ const AboutTask: React.FC<AboutTaskProps> = ({ onClose }) => {
   const { setEditMode } = useEditAddTaskStore();
 
   const handleEditClick = () => {
-    console.log("Setting edit mode"); // Add this line for debugging
-    setEditMode(true); // Set editMode to true
+    setEditMode(true);
   };
 
   const handleDeleteClick = () => {
