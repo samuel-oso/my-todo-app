@@ -77,7 +77,7 @@ const MyTasks: React.FC = () => {
           {tasksToDisplay.map((task) => (
             <div
               key={task.id}
-              className={`px-24 py-16 flex justify-between items-center cursor-pointer h-72 ${
+              className={`px-24 py-16 flex justify-between items-center cursor-pointer min-h-[72px] ${
                 task.id === activeTaskId ? "bg-[#EAEDFE]" : ""
               }`}
               style={{ borderBottom: "1px solid #EAECF0" }}
@@ -109,7 +109,7 @@ const MyTasks: React.FC = () => {
                 checked={task.completed}
                 onChange={() => toggleTaskCompletion(task.id)}
               />
-              <p className="text-sm text-gray-600 leading-[20px]">
+              <p className="text-sm text-gray-600 leading-[20px] min-w-[77px] text-center">
                 {formatTaskDate(task.date)}
               </p>
             </div>
