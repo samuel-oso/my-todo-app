@@ -1,6 +1,10 @@
 import { create } from "zustand";
 import { Task } from "../api/DummyData";
 
+function generateUniqueId() {
+  return new Date().getTime();
+}
+
 interface TaskStore {
   tasks: Task[];
   setTasks: (tasks: Task[]) => void;
@@ -15,7 +19,7 @@ export const useTaskStore = create<TaskStore>((set) => ({
   setTasks: (tasks) => set({ tasks }),
   addTask: (task) =>
     set((state) => ({
-      tasks: [{ ...task }, ...state.tasks],
+      tasks: [{ ...task, id: generateUniqueId() }, ...state.tasks],
     })),
   editTask: (taskId, updatedTask) =>
     set((state) => ({
